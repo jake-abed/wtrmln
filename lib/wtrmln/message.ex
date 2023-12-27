@@ -6,6 +6,6 @@ defmodule Wtrmln.Message do
     field :message, :string
     belongs_to :room, Wtrmln.Room
 
-    timestamp(type: :utc_datetime)
+    timestamps(type: :utc_datetime)
   end
 end
