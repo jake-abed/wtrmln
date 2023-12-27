@@ -2,6 +2,8 @@
 <section class="bg-white flex flex-col w-full h-[100dvh] justify-center items-center">
   <h1 class="text-2xl font-bold p-4">WTRMLN CHAT</h1>
   <form
+    action="/create-seed"
+    method="post"
     class="bg-white flex flex-col justify-center gap-8 border-dotted border-melon-green border-4 rounded-lg w-[90dvw] max-w-[400px] h-[40dvh]">
     <div class="flex px-4 flex-wrap justify-between items-center">
       <label for="username" class="font-semibold text-melon-black">USERNAME: </label>
@@ -11,6 +13,7 @@
       <label for="seed" class="font-semibold text-melon-black">ROOM SEED: </label>
       <input class="rounded-lg border-melon-black border-solid border-2" type="text" id="seed" name="seed" />
     </div>
+    <input type="hidden" value={Phoenix.Controller.get_csrf_token()} name="_csrf_token"/>
     <div class="flex px-4 flex-wrap justify-center items-center">
       <button class="py-4 px-12 text-melon-black text-lg font-bold bg-melon-red border-melon-green border-solid border-4 rounded-xl" type="submit">JOIN ROOM</button>
     </div>

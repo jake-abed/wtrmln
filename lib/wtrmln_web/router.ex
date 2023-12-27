@@ -9,7 +9,6 @@ defmodule WtrmlnWeb.Router do
     plug :put_root_layout, html: {WtrmlnWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :fetch_live_flash
   end
 
   pipeline :api do
@@ -20,8 +19,9 @@ defmodule WtrmlnWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    post "/create-seed", RoomController, :create_seed
 
-    live "/:seed", RoomLive.Index
+    live "/seed/:seed", RoomLive.Index
   end
 
   # Other scopes may use custom stacks.
