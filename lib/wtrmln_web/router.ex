@@ -1,5 +1,6 @@
 defmodule WtrmlnWeb.Router do
   use WtrmlnWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -8,6 +9,7 @@ defmodule WtrmlnWeb.Router do
     plug :put_root_layout, html: {WtrmlnWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_live_flash
   end
 
   pipeline :api do
@@ -18,6 +20,8 @@ defmodule WtrmlnWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/:seed", RoomLive.Index
   end
 
   # Other scopes may use custom stacks.

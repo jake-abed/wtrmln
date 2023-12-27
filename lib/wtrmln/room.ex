@@ -4,5 +4,7 @@ defmodule Wtrmln.Room do
   schema "room" do
     field :seed, :string
     has_many :messages, Wtrmln.Message
+
+    timestamps(type: :utc_datetime)
   end
 end

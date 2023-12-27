@@ -1,0 +1,12 @@
+<div>
+  <div class="messages h-[60dvh] w-[90dvw] max-w-[600px]">
+    <%= for m <- @messages do %>
+      <p class="m-1"><b><%= m.name %></b>: <%=m.message %></p>
+    <% end %>
+  </div>
+  <form phx-submit="send">
+    <input type="text" name="message"/>
+    <input type="text" class="hidden" name="seed" value={@seed} />
+    <button type="submit">SEND </button>
+  </form>
+</div>
