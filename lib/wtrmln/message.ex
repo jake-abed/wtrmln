@@ -1,5 +1,7 @@
 defmodule Wtrmln.Message do
   use Ecto.Schema
+  import Ecto.Changeset
+  import Ecto.Query
 
   schema "messages" do
     field :username, :string
@@ -7,5 +9,18 @@ defmodule Wtrmln.Message do
     belongs_to :room, Wtrmln.Room
 
     timestamps(type: :utc_datetime)
+  end
+
+  @doc false
+  def changeset(message, attrs) do
+    message
+    |> cast(attrs, [:username, :message, :room_id])
+    |> validate_required([:username, :message])
+  end
+
+  def add_message(message) do
+    room_id = Wtrmln.Room.get_room_id(message.seed)
+    changeset(%Wtrmln.Message{}, Map.put(message, :room_id, room_id))
+    |> Wtrmln.Repo.insert()
   end
 end

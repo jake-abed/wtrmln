@@ -17,8 +17,8 @@ defmodule WtrmlnWeb.RoomLive.Index do
         gen_username()
     end 
     {:ok, assign(socket, seed: seed, username: username, messages: [])}
-  end
-
+  end 
+ 
   def handle_info(%{event: "message", payload: message}, socket) do
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end

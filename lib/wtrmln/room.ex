@@ -22,6 +22,11 @@ defmodule Wtrmln.Room do
     Wtrmln.Repo.exists?(query)
   end
 
+  def get_room_id(seed) do
+    query = from r in Wtrmln.Room, where: r.seed == ^seed, select: r.id
+    Wtrmln.Repo.one!(query)
+  end
+
   def create_room(seed) do
     Wtrmln.Room.changeset(%Wtrmln.Room{}, %{seed: seed})
     |> Wtrmln.Repo.insert()
