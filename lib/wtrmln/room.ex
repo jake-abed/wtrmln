@@ -17,16 +17,20 @@ defmodule Wtrmln.Room do
     |> validate_required([:seed])
   end
 
+  @spec room_exists?(seed :: String.t()) :: boolean()
   def room_exists?(seed) do
     query = from r in Wtrmln.Room, where: r.seed == ^seed
     Wtrmln.Repo.exists?(query)
   end
 
+  @spec get_room_id(seed :: String.t()) :: pos_integer()
   def get_room_id(seed) do
     query = from r in Wtrmln.Room, where: r.seed == ^seed, select: r.id
     Wtrmln.Repo.one!(query)
   end
 
+  @spec create_room(seed :: String.t())
+    :: {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
   def create_room(seed) do
     Wtrmln.Room.changeset(%Wtrmln.Room{}, %{seed: seed})
     |> Wtrmln.Repo.insert()

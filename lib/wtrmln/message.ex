@@ -1,7 +1,6 @@
 defmodule Wtrmln.Message do
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query
 
   schema "messages" do
     field :username, :string
