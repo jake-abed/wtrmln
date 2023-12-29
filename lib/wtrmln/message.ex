@@ -17,6 +17,10 @@ defmodule Wtrmln.Message do
     |> validate_required([:username, :message])
   end
 
+  @type message()
+    :: %{seed: String.t(), message: String.t(), username: String.t()}
+  @spec add_message(message())
+    :: {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
   def add_message(message) do
     room_id = Wtrmln.Room.get_room_id(message.seed)
     changeset(%Wtrmln.Message{}, Map.put(message, :room_id, room_id))

@@ -3,6 +3,6 @@ defmodule WtrmlnWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+    assert html_response(conn, 200) =~ "<h1 class=\"text-2xl font-bold p-4\">WTRMLN CHAT</h1>" 
   end
 end

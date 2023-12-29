@@ -28,7 +28,7 @@ defmodule WtrmlnWeb.RoomLive.Index do
     {:noreply, put_flash(socket, :info, "#{message.username} joined the seed.")}
   end
 
-  def handle_info(%{event: "spit", payload: message}, socket) do
+  def handle_info(%{event: "spit", payload: _message}, socket) do
     {:noreply, push_navigate(socket, to: "/")}
   end
 
