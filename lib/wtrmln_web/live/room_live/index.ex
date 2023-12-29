@@ -15,7 +15,8 @@ defmodule WtrmlnWeb.RoomLive.Index do
         params["username"]
       else
         gen_username()
-    end 
+    end
+    WtrmlnWeb.Endpoint.broadcast(seed, "join", %{username: username})
     {:ok, assign(socket, seed: seed, username: username, messages: [])}
   end 
  
@@ -23,8 +24,23 @@ defmodule WtrmlnWeb.RoomLive.Index do
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end
 
+  def handle_info(%{event: "join", payload: message}, socket) do
+    {:noreply, put_flash(socket, :info, "#{message.username} joined the seed.")}
+  end
+
+  def handle_info(%{event: "spit", payload: message}, socket) do
+    {:noreply, push_navigate(socket, to: "/")}
+  end
+
+  def handle_event("spit", %{"seed" => seed}, socket) do
+    WtrmlnWeb.Endpoint.broadcast(
+      seed, "spit", %{seed: seed, username: socket.assigns.username})
+    {:noreply, socket}
+  end
+
   def handle_event("send", %{"message" => text, "seed"=> seed}, socket) do
-    WtrmlnWeb.Endpoint.broadcast(seed, "message", %{message: text, name: socket.assigns.username})
+    WtrmlnWeb.Endpoint.broadcast(
+      seed, "message", %{message: text, name: socket.assigns.username})
     {:noreply, socket}
   end
 
