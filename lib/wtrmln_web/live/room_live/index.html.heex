@@ -1,12 +1,13 @@
 <div class="w-full h-full" >
   <div class="md:m-auto messages overflow-x-hidden flex flex-col gap-2 overflow-scroll h-full w-[90dvw] max-w-[600px]">
     <%= for m <- @messages do %>
-      <p class="p-2 rounded-lg border-melon-green border-2 border-solid text-wrap"><b><%= m.name %></b>: <%=m.message %></p>
+      <p class="p-2 rounded-lg border-melon-green border-2 border-solid text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
     <% end %>
   </div>
   <form class="fixed bottom-2 inset-x-0 w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2" phx-submit="send">
     <input class="rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message"/>
     <input type="text" class="hidden" name="seed" value={@seed} />
+    <input type="text" class="hidden" name="username" value={@username} />
     <button class="bg-melon-red px-4 py-2 font-semibold text-melon-black rounded-lg border-melon-green border-4 border-solid" type="submit">SEND </button>
   </form>
   <form class="fixed right-6 bottom-20" phx-submit="spit">
