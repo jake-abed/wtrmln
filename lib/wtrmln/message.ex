@@ -46,9 +46,11 @@ defmodule Wtrmln.Message do
     delete_messages(tl)
   end
 
+  @spec delete_messages_in_room(seed :: String.t()) :: atom()
   def delete_messages_in_room(seed) do
     room_id = Wtrmln.Room.get_room_id(seed)
     query = from m in Wtrmln.Message, where: m.room_id == ^room_id
-    Wtrmln.Repo.all(query) |> delete_messages()
+    {res, _} = Wtrmln.Repo.all(query) |> delete_messages()
+    res
   end
 end

@@ -22,7 +22,6 @@ defmodule WtrmlnWeb.RoomLive.Index do
   end 
  
   def handle_info(%{event: "message", payload: message}, socket) do
-    Wtrmln.Message.add_message(message)
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end
 
@@ -35,14 +34,17 @@ defmodule WtrmlnWeb.RoomLive.Index do
   end
 
   def handle_event("spit", %{"seed" => seed}, socket) do
+    Wtrmln.spit_seed(seed)
     WtrmlnWeb.Endpoint.broadcast(
       seed, "spit", %{seed: seed, username: socket.assigns.username})
     {:noreply, socket}
   end
 
   def handle_event("send", %{"message" => text, "username" => username, "seed"=> seed}, socket) do
+    message = %{message: text, username: username, seed: seed}
+    Wtrmln.Message.add_message(message)
     WtrmlnWeb.Endpoint.broadcast(
-      seed, "message", %{message: text, seed: seed, username: username})
+      seed, "message", message)
     {:noreply, socket}
   end
 
