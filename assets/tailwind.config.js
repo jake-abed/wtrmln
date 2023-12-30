@@ -18,6 +18,10 @@ module.exports = {
         "melon-red": "#EB5657",
         "melon-green": "#33A965",
         "melon-black": "#505050",
+      },
+      boxShadow: {
+        "message": "4px 4px 16px 4px rgba(0, 0, 0, 0.6)",
+        "heavy-inner": "inset 1px 1px 2px 1px rgba(0, 0, 0, 0.6)"
       }
     },
   },
