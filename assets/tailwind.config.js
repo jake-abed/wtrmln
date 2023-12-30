@@ -22,6 +22,9 @@ module.exports = {
       boxShadow: {
         "message": "4px 4px 16px 4px rgba(0, 0, 0, 0.6)",
         "heavy-inner": "inset 1px 1px 2px 1px rgba(0, 0, 0, 0.6)"
+      },
+      fontFamily: {
+        "noto": ["Noto Sans", "sans-serif"]
       }
     },
   },

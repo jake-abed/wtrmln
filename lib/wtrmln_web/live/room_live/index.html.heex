@@ -1,17 +1,21 @@
 <div class="w-full h-full" >
   <div class="md:m-auto messages overflow-x-hidden flex flex-col gap-2 overflow-scroll h-full w-[90dvw] max-w-[600px]">
     <%= for m <- @messages do %>
-      <p class="p-2 rounded-lg border-melon-green border-2 border-solid text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
+      <%= if m.username == @username do%>
+        <p class="font-noto p-2 rounded-xl font-semibold border-melon-green min-w-[240px] bg-melon-red text-white self-end border-4 border-solid text-wrap"><%=m.message %></p>
+      <% else %>
+        <p class="font-noto p-2 rounded-xl font-normal border-melon-green min-w-[240px] self-start border-4 border-solid text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
+      <% end %>
     <% end %>
   </div>
   <form class="bg-melon-red border-melon-green border-8 border-solid fixed bottom-0 inset-x-0 py-2 w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2" phx-submit="send">
-    <input class="rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message"/>
+    <input class="font-noto rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message"/>
     <input type="text" class="hidden" name="seed" value={@seed} />
     <input type="text" class="hidden" name="username" value={@username} />
-    <button class="bg-melon-green px-4 py-2 font-semibold text-white rounded-lg border-melon-red border-4 border-solid" type="submit">SEND</button>
+    <button class="font-noto bg-melon-green px-4 py-2 font-semibold text-white rounded-lg border-melon-red border-4 border-solid" type="submit">SEND</button>
   </form>
   <form class="fixed top-28 right-4" phx-submit="spit">
     <input type="text" class="hidden" name="seed" value={@seed} />
-    <button class="h-[69px] w-[69px] font-semibold text-white bg-melon-red rounded-full p-1 border-melon-green border-4 border-solid" type="submit">SPIT</button>
+    <button class="opacity-75 h-[69px] w-[69px] font-noto font-semibold text-white bg-melon-red rounded-full p-1 border-melon-green border-4 border-solid" type="submit">SPIT</button>
   </form>
 </div>
