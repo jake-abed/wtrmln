@@ -9,7 +9,7 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/wtrmln_web.ex",
-    "../lib/wtrmln_web/**/*.*ex"
+    "../lib/wtrmln_web/**/*.*ex",
   ],
   theme: {
     extend: {
