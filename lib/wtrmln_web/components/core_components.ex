@@ -115,7 +115,7 @@ defmodule WtrmlnWeb.CoreComponents do
       phx-click={JS.push("lv:clear-flash", value: %{key: @kind}) |> hide("##{@id}")}
       role="alert"
       class={[
-        "fixed top-2 right-2 mr-2 w-80 max-w-[50dvw] sm:w-96 z-50 rounded-xl p-3 ring-1",
+        "fixed top-[96px] right-2 mr-2 w-80 max-w-[50dvw] sm:w-96 z-50 rounded-xl p-3 ring-1",
         @kind == :info && "bg-melon-green text-white shadow-message border-melon-red border-solid border-4",
         @kind == :error && "bg-melon-red text-white shadow-message border-melon-green border-solid border-4"
       ]}

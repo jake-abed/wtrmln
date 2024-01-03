@@ -1,9 +1,8 @@
-<header class="w-[100dvw] bg-melon-red border-melon-green border-8 border-solid">
+<header class="fixed top-0 z-10 w-[100dvw] flex bg-melon-red border-melon-green justify-center items-center border-8 border-solid">
+  <img width="42" height="42" class="ml-4 basis-auto shrink-0 grow-0" src={~p"/images/wtrmln.webp"}/>
   <h1 class="p-4 text-center text-4xl font-noto text-white font-semibold">WTRMLN CHAT</h1>
 </header>
-<main class="relative border-melon-green border-8 border-solid min-h-[77dvh]">
-  <div class="absolute inset-2">
+<main class="absolute w-full top-[88px] bottom-[10dvh] z-0">
     <.flash_group flash={@flash} />
     <%= @inner_content %>
-  </div>
 </main>
