@@ -18,7 +18,7 @@ defmodule WtrmlnWeb.RoomLive.Index do
     end
     messages = Wtrmln.Message.get_messages(seed)
     WtrmlnWeb.Endpoint.broadcast(seed, "join", %{username: username})
-    {:ok, assign(socket, seed: seed, username: username, messages: messages)}
+    {:ok, assign(socket, seed: seed, username: username, messages: messages, message: "")}
   end 
  
   def handle_info(%{event: "message", payload: message}, socket) do
@@ -45,7 +45,7 @@ defmodule WtrmlnWeb.RoomLive.Index do
     Wtrmln.Message.add_message(message)
     WtrmlnWeb.Endpoint.broadcast(
       seed, "message", message)
-    {:noreply, socket}
+    {:noreply, assign(socket, message: "")}
   end
 
   defp gen_username do

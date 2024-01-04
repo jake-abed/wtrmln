@@ -9,11 +9,11 @@
     method="post"
     class="px-1 py-4 bg-melon-red flex flex-col justify-center gap-4 border-solid border-melon-green border-8 rounded-2xl w-[90dvw] max-w-[400px]"> 
     <div class="flex flex-col px-4 flex-wrap justify-center items-center">
-      <label for="username" class="font-noto text-2xl text-white font-semibold text-melon-black">USERNAME: </label>
+      <label for="username" class="pb-2 font-noto text-2xl text-white font-semibold text-melon-black">USERNAME: </label>
       <input class="font-noto shadow-heavy-inner rounded-xl border-none" type="text" id="username" name="username"/>
     </div>
     <div class="flex flex-col px-4 flex-wrap justify-between items-center">
-      <label for="seed" class="font-noto font-semibold text-2xl text-white text-melon-black">ROOM SEED: </label>
+      <label for="seed" class="pb-2 font-noto font-semibold text-2xl text-white text-melon-black">ROOM SEED: </label>
       <input class="font-noto shadow-heavy-inner rounded-xl border-none" type="text" id="seed" name="seed" />
     </div>
     <input type="hidden" value={get_csrf_token()} name="_csrf_token"/>

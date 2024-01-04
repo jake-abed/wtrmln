@@ -31,7 +31,7 @@ defmodule Wtrmln.Message do
 
   def get_messages(seed) do
     room_id = Wtrmln.Room.get_room_id(seed)
-    query = from m in Wtrmln.Message, where: m.room_id == ^room_id
+    query = from m in Wtrmln.Message, where: m.room_id == ^room_id, order_by: m.inserted_at
     Wtrmln.Repo.all(query)
   end
 

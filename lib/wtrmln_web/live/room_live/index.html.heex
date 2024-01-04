@@ -1,5 +1,5 @@
 <div class="absolute w-full h-full" >
-  <div class="absolute top-2 lg:inset-x-1/3 md:m-auto h-full messages overflow-x-hidden flex flex-col gap-2 overflow-scroll w-[98dvw] max-w-[600px] h-[77dvh]">
+  <div class="absolute top-0 left-1 md:m-auto h-full messages overflow-x-hidden flex flex-col gap-2 overflow-scroll w-[98dvw] lg:inset-x-[15dvw] lg:w-[60dvw] h-[76dvh]">
     <%= for m <- @messages do %>
       <%= if m.username == @username do%>
         <p class="font-noto p-2 rounded-xl font-semibold border-melon-green min-w-[240px] bg-melon-red text-white self-end border-4 border-solid text-wrap"><%=m.message %></p>
@@ -8,8 +8,9 @@
       <% end %>
     <% end %>
   </div>
-  <form class="bg-white border-melon-green border-8 border-solid fixed bottom-0 inset-x-0 py-2 h-[10dvh] min-h-[75px] w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2" phx-submit="send">
-    <input class="p-2 font-noto rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message"/>
+  <form class="bg-white border-melon-green border-8 border-solid fixed bottom-0 inset-x-0 py-2 h-[10dvh] min-h-[75px] w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2"
+    phx-hook="FormReset" phx-submit="send" phx-reset="" id="chat-form">
+    <input maxlength="255" required id="message" class="px-2 py-1 font-noto rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message" value={@message}/>
     <input type="text" class="hidden" name="seed" value={@seed} />
     <input type="text" class="hidden" name="username" value={@username} />
     <button class="font-noto bg-melon-green px-2 py-1 font-semibold text-white rounded-lg border-melon-red border-4 border-solid" type="submit">SEND</button>
