@@ -16,12 +16,15 @@ module.exports = {
       colors: {
         brand: "#FD4F00",
         "melon-red": "#EB5657",
-        "melon-green": "#33A965",
+        "melon-green": "#22A554",
         "melon-black": "#505050",
       },
       boxShadow: {
         "message": "4px 4px 16px 4px rgba(0, 0, 0, 0.6)",
-        "heavy-inner": "inset 1px 1px 2px 1px rgba(0, 0, 0, 0.6)"
+        "heavy-inner": "inset 2px 2px 4px 2px rgba(0, 0, 0, 0.6)",
+        "red-clay": "inset 2px 2px 8px 3px #FE9F8F, inset -3px -3px 8px 3px #CA3141, 1px 1px 10px 1px #A9113166",
+        "green-clay": "inset 2px 2px 8px 3px #55CC89, inset -3px -3px 8px 3px #117329, 1px 1px 10px 1px #11532066",
+        "white-clay": "inset -3px -3px 8px 3px #00000066, 1px 1px 10px 2px #00000033"
       },
       fontFamily: {
         "noto": ["Noto Sans", "sans-serif"]

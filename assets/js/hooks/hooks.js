@@ -9,4 +9,10 @@ Hooks.FormReset = {
   }
 }
 
+Hooks.MessageAdded = {
+  mounted() {
+    this.el.scrollIntoView()
+  }
+}
+
 export default Hooks

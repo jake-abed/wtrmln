@@ -1,22 +1,29 @@
 <div class="absolute w-full h-full" >
-  <div class="absolute top-0 left-1 md:m-auto h-full messages overflow-x-hidden flex flex-col gap-2 overflow-scroll w-[98dvw] lg:inset-x-[15dvw] lg:w-[60dvw] h-[76dvh]">
+  <div class="absolute top-0 pt-2 pb-4 px-2 left-1 md:m-auto h-full messages overflow-x-hidden flex flex-col gap-2 overflow-scroll w-[98dvw] lg:inset-x-[15dvw] lg:w-[60dvw] h-[76dvh]">
     <%= for m <- @messages do %>
       <%= if m.username == @username do%>
-        <p class="font-noto p-2 rounded-xl font-semibold border-melon-green min-w-[240px] bg-melon-red text-white self-end border-4 border-solid text-wrap"><%=m.message %></p>
+        <p id={String.replace(m.username <> m.message, [" ", ";", "?", "."], "") |> String.downcase() |> String.slice(0..20)}
+          phx-hook="MessageAdded"
+          class="font-noto p-4 rounded-2xl font-semibold min-w-[240px] bg-melon-red shadow-red-clay text-white self-end text-wrap"><%=m.message %></p>
       <% else %>
-        <p class="font-noto p-2 rounded-xl font-normal border-melon-green min-w-[240px] self-start border-4 border-solid text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
+        <p id={String.replace(m.username <> m.message, [" ", ";", "?", "."], "") |> String.downcase() |> String.slice(0..20)}
+          phx-hook="MessageAdded"
+        class="font-noto p-4 bg-melon-green shadow-green-clay rounded-2xl font-normal text-white min-w-[240px] self-start text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
       <% end %>
     <% end %>
   </div>
-  <form class="bg-white border-melon-green border-8 border-solid fixed bottom-0 inset-x-0 py-2 h-[10dvh] min-h-[75px] w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2"
+  <form class="bg-white fixed bottom-0 inset-x-0 py-2 h-[10dvh] min-h-[75px] max-h-[80px] w-[100dvw] max-w-800px flex flex-wrap justify-center gap-2"
     phx-hook="FormReset" phx-submit="send" phx-reset="" id="chat-form">
-    <input maxlength="255" required id="message" class="px-2 py-1 font-noto rounded-lg border-melon-black border-solid border-4 text-wrap" type="text" name="message" value={@message}/>
+    <input maxlength="255" required id="message" class="px-4 py-1 font-noto rounded-2xl shadow-white-clay ring-0 border-none focus:ring-0 focus:border-none focus:outline-none active:outline-none text-wrap" type="text" name="message" value={@message}/>
     <input type="text" class="hidden" name="seed" value={@seed} />
     <input type="text" class="hidden" name="username" value={@username} />
-    <button class="font-noto bg-melon-green px-2 py-1 font-semibold text-white rounded-lg border-melon-red border-4 border-solid" type="submit">SEND</button>
+    <button class="font-noto bg-melon-green px-4 py-1 font-semibold text-white rounded-2xl shadow-green-clay" type="submit">SEND</button>
   </form>
   <form class="fixed top-28 left-4" phx-submit="spit">
     <input type="text" class="hidden" name="seed" value={@seed} />
-    <button class="opacity-75 h-[69px] w-[69px] font-noto font-semibold text-white bg-melon-red rounded-full p-1 border-melon-green border-4 border-solid" type="submit">SPIT</button>
+    <button class="relative z-10 h-[69px] w-[69px] font-noto font-semibold text-white bg-melon-green shadow-green-clay rounded-3xl" type="submit">
+      <p class="relative z-10">SPIT</p>
+      <div class="absolute z-0 inset-[8.5px] h-[52px] w-[52px] text-white bg-melon-red shadow-red-clay rounded-2xl"></div>
+    </button>
   </form>
 </div>

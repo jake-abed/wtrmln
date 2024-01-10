@@ -1,6 +1,12 @@
-<header class="fixed top-0 z-10 w-[100dvw] flex bg-melon-red border-melon-green justify-center items-center border-8 border-solid">
-  <img width="42" height="42" class="ml-4 basis-auto shrink-0 grow-0" src={~p"/images/wtrmln.webp"}/>
-  <h1 class="p-4 text-center text-4xl font-noto text-white font-semibold">WTRMLN CHAT</h1>
+<header class="fixed w-full flex justify-center items-center pt-1 px-[2px]">
+  <div class="flex justify-center items-center w-[100dvw] max-w-[620px] rounded-3xl bg-melon-green shadow-green-clay py-2">
+    <a href={~p"/"}>
+      <div class="flex justify-center items-center  w-[95dvw] max-w-[600px] rounded-3xl bg-melon-red shadow-red-clay">
+        <img width="42" height="42" class="ml-4 basis-auto shrink-0 grow-0" src={~p"/images/wtrmln.webp"}/>
+        <h1 class="p-3 text-center text-4xl font-noto text-white font-semibold">WTRMLN CHAT</h1>
+      </div>
+    </a>
+  </div>
 </header>
 <main class="absolute w-full top-[88px] bottom-[10dvh] z-0">
     <.flash_group flash={@flash} />

@@ -1,13 +1,13 @@
 <.flash_group flash={@flash} />
-<section class="bg-white flex flex-col w-full h-[100dvh] justify-start gap-4 items-center">
-  <div class="w-[100dvw] flex justify-center items-center bg-melon-red border-melon-green border-8 border-solid">
+<section class="p-2 bg-white flex flex-col w-full h-[100dvh] justify-start gap-4 items-center">
+  <div class="w-[95dvw] max-w-[600px] flex justify-center items-center bg-melon-red shadow-red-clay rounded-3xl">
     <img width="42" height="42" class="ml-4 shrink-0 grow-0 basis-auto" src={~p"/images/wtrmln.webp"} />
     <h1 class="text-center font-noto box-shadow-heavy-inner text-4xl text-white font-bold p-4">WTRMLN CHAT</h1>
   </div>
   <form
     action="/create-seed"
     method="post"
-    class="px-1 py-4 bg-melon-red flex flex-col justify-center gap-4 border-solid border-melon-green border-8 rounded-2xl w-[90dvw] max-w-[400px]"> 
+    class="px-1 py-4 bg-melon-red shadow-red-clay flex flex-col justify-center gap-4 rounded-2xl w-[90dvw] max-w-[400px]"> 
     <div class="flex flex-col px-4 flex-wrap justify-center items-center">
       <label for="username" class="pb-2 font-noto text-2xl text-white font-semibold text-melon-black">USERNAME: </label>
       <input class="font-noto shadow-heavy-inner rounded-xl border-none" type="text" id="username" name="username"/>
@@ -18,17 +18,17 @@
     </div>
     <input type="hidden" value={get_csrf_token()} name="_csrf_token"/>
     <div class="flex px-4 flex-wrap justify-center items-center">
-      <button class="font-noto py-4 px-12 text-melon-black my-2 text-2xl font-bold bg-white border-melon-green border-solid border-[6px] rounded-xl" type="submit">JOIN ROOM</button>
+      <button class="font-noto py-4 px-12 text-white my-2 text-2xl font-bold bg-melon-green shadow-green-clay rounded-2xl" type="submit">JOIN ROOM</button>
     </div>
   </form>
-  <div class="px-1 py-4 bg-melon-red flex flex-col justify-center gap-4 border-solid border-melon-green border-8 rounded-2xl w-[90dvw] max-w-[400px]">
+  <div class="px-1 py-4 bg-melon-red shadow-red-clay flex flex-col justify-center gap-4 rounded-2xl w-[90dvw] max-w-[400px]">
     <h2 class="font-noto text-center text-2xl text-white font-bold">HOW TO USE WTRMLN</h2>
     <ol class="font-noto pl-11 text-white font-semibold text-xl list-decimal">
       <li>Choose your username.</li>
       <li>Set a seed to join or create.</li>
       <li>Join the room.</li>
       <li>Chat!</li>
-      <li>Spit the seed to delete it permanently</li>
+      <li>Spit the seed to delete it permanently.</li>
     </ol>
   </div>
   <div class="p-1"></div>
