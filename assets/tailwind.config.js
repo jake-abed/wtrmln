@@ -28,6 +28,15 @@ module.exports = {
       },
       fontFamily: {
         "noto": ["Noto Sans", "sans-serif"]
+      },
+      keyframes: {
+        grow: {
+          "0%": { "transform": "scaleY(0.85) scaleX(0.95)", "opacity": "0" },
+          "100%": { "transform": "scaleY(1) scaleX(1)", "opacity": "1" }
+        }
+      },
+      animation: {
+        messageGrow: "grow 0.7s ease-in-out 1 normal forwards"
       }
     },
   },

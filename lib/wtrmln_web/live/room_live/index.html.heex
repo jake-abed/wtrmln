@@ -1,14 +1,14 @@
-<div class="absolute w-full h-full" >
+<div class="absolute z-10 w-full h-full" >
   <div class="absolute top-0 pt-2 pb-4 px-2 left-1 md:m-auto h-full messages overflow-x-hidden flex flex-col gap-2 overflow-scroll w-[98dvw] lg:inset-x-[15dvw] lg:w-[60dvw] h-[76dvh]">
     <%= for m <- @messages do %>
       <%= if m.username == @username do%>
         <p id={String.replace(m.username <> m.message, [" ", ";", "?", "."], "") |> String.downcase() |> String.slice(0..20)}
           phx-hook="MessageAdded"
-          class="font-noto p-4 rounded-2xl font-semibold min-w-[240px] bg-melon-red shadow-red-clay text-white self-end text-wrap"><%=m.message %></p>
+          class="font-noto animate-messageGrow p-4 rounded-2xl font-semibold min-w-[240px] bg-melon-red shadow-red-clay text-white self-end text-wrap"><%=m.message %></p>
       <% else %>
         <p id={String.replace(m.username <> m.message, [" ", ";", "?", "."], "") |> String.downcase() |> String.slice(0..20)}
           phx-hook="MessageAdded"
-        class="font-noto p-4 bg-melon-green shadow-green-clay rounded-2xl font-normal text-white min-w-[240px] self-start text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
+        class="font-noto p-4 animate-messageGrow bg-melon-green shadow-green-clay rounded-2xl font-normal text-white min-w-[240px] self-start text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
       <% end %>
     <% end %>
   </div>

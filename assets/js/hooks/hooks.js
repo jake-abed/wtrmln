@@ -11,7 +11,7 @@ Hooks.FormReset = {
 
 Hooks.MessageAdded = {
   mounted() {
-    this.el.scrollIntoView()
+    this.el.scrollIntoView({ behavior: "smooth" });
   }
 }
 
