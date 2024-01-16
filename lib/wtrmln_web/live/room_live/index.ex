@@ -15,8 +15,9 @@ defmodule WtrmlnWeb.RoomLive.Index do
         params["username"]
       else
         gen_username()
-    end
-    messages = Wtrmln.Message.get_messages(seed)
+      end
+    room_id = Wtrmln.Room.get_room_id(seed)
+    messages = Wtrmln.Message.get_messages(room_id, 100) |> Enum.reverse()
     WtrmlnWeb.Endpoint.broadcast(seed, "join", %{username: username})
     {:ok, assign(socket, seed: seed, username: username, messages: messages, message: "")}
   end 
@@ -40,9 +41,9 @@ defmodule WtrmlnWeb.RoomLive.Index do
     {:noreply, socket}
   end
 
-  def handle_event("send", %{"message" => text, "username" => username, "seed"=> seed}, socket) do
+ def handle_event("send", %{"message" => text, "username" => username, "seed"=> seed}, socket) do
     message = %{message: text, username: username, seed: seed}
-    Wtrmln.Message.add_message(message)
+    Wtrmln.send_message(message)
     WtrmlnWeb.Endpoint.broadcast(
       seed, "message", message)
     {:noreply, assign(socket, message: "")}

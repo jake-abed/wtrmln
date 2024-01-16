@@ -8,7 +8,7 @@
       <% else %>
         <p id={String.replace(m.username <> m.message, [" ", ";", "?", "."], "") |> String.downcase() |> String.slice(0..20)}
           phx-hook="MessageAdded"
-        class="font-noto p-4 animate-messageGrow bg-melon-green shadow-green-clay rounded-2xl font-normal text-white min-w-[240px] self-start text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
+        class="font-noto p-4 bg-melon-green shadow-green-clay rounded-2xl font-normal text-white min-w-[240px] self-start text-wrap"><b><%= m.username %></b>: <%=m.message %></p>
       <% end %>
     <% end %>
   </div>
