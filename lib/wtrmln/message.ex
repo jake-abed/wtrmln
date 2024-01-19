@@ -21,13 +21,14 @@ defmodule Wtrmln.Message do
     |> validate_required([:username, :message])
   end
 
-  @spec add_message(String.t(), message())
+  @spec add_message(pos_integer(), message())
     :: {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
   def add_message(room_id, message) do
     changeset(%Wtrmln.Message{}, Map.put(message, :room_id, room_id))
     |> Wtrmln.Repo.insert()
   end
 
+  @spec get_messages(String.t(), integer()) :: list(message())
   def get_messages(room_id, limit \\ 100) do
     query = from m in Wtrmln.Message,
       where: m.room_id == ^room_id,
@@ -36,6 +37,8 @@ defmodule Wtrmln.Message do
     Wtrmln.Repo.all(query)
   end
 
+  @spec delete_message(message :: %Wtrmln.Message{})
+    :: {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
   def delete_message(message) do
     Wtrmln.Repo.delete(message)
   end
@@ -47,7 +50,7 @@ defmodule Wtrmln.Message do
     delete_messages(tl)
   end
 
-  @spec delete_messages_in_room(room_id :: String.t()) :: atom()
+  @spec delete_messages_in_room(room_id :: pos_integer()) :: atom()
   def delete_messages_in_room(room_id) do
     query = from m in Wtrmln.Message, where: m.room_id == ^room_id
     {res, _} = Wtrmln.Repo.all(query) |> delete_messages()

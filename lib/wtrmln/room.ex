@@ -36,7 +36,7 @@ defmodule Wtrmln.Room do
     |> Wtrmln.Repo.insert()
   end
 
-  @spec delete_room(room_id :: String.t()) :: atom()
+  @spec delete_room(room_id :: pos_integer()) :: :ok | :error
   def delete_room(room_id) do
     query = from r in Wtrmln.Room, where: r.id == ^room_id
     {res, _} = Wtrmln.Repo.one!(query) |> Wtrmln.Repo.delete()
