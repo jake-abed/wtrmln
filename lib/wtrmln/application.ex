@@ -15,7 +15,8 @@ defmodule Wtrmln.Application do
       # Start a worker by calling: Wtrmln.Worker.start_link(arg)
       # {Wtrmln.Worker, arg},
       # Start to serve requests, typically the last entry
-      WtrmlnWeb.Endpoint
+      WtrmlnWeb.Endpoint,
+      FunWithFlags.Supervisor,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

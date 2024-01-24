@@ -11,6 +11,15 @@ config :wtrmln,
   ecto_repos: [Wtrmln.Repo],
   generators: [timestamp_type: :utc_datetime]
 
+# FunWithFlags Config
+config :fun_with_flags, :persistence,
+  adapter: FunWithFlags.Store.Persistent.Ecto,
+  repo: Wtrmln.Repo,
+  ecto_table_name: "flag_toggles",
+  ecto_primary_key_type: :id
+config :fun_with_flags, :cache, enabled: false
+config :fun_with_flags, :cache_bust_notifications, enabled: false
+
 # Configures the endpoint
 config :wtrmln, WtrmlnWeb.Endpoint,
   url: [host: "localhost"],
