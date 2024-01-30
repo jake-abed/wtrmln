@@ -43,9 +43,9 @@ defmodule WtrmlnWeb.RoomLive.Index do
 
  def handle_event("send", %{"message" => text, "username" => username, "seed"=> seed}, socket) do
     message = %{message: text, username: username, seed: seed}
-    Wtrmln.send_message(message)
+   {_, %Wtrmln.Message{id: id}} = Wtrmln.send_message(message)
     WtrmlnWeb.Endpoint.broadcast(
-      seed, "message", message)
+      seed, "message", Map.put(message, :id, id))
     {:noreply, assign(socket, message: "")}
   end
 

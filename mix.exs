@@ -19,7 +19,8 @@ defmodule Wtrmln.MixProject do
   def application do
     [
       mod: {Wtrmln.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      included_applicatoins: [:fun_with_flags],
+      extra_applications: [:crypto, :logger, :runtime_tools]
     ]
   end
 
