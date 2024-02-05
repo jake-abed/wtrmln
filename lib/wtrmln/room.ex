@@ -5,9 +5,11 @@ defmodule Wtrmln.Room do
 
   schema "rooms" do
     field :seed, :string
+    field :timeout, :integer
+    field :last_used, :naive_datetime
     has_many :messages, Wtrmln.Message
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :naive_datetime)
   end
 
   @doc false

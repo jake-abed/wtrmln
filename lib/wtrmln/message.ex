@@ -11,7 +11,7 @@ defmodule Wtrmln.Message do
     field :message, :string
     belongs_to :room, Wtrmln.Room
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :naive_datetime)
   end
 
   @doc false
