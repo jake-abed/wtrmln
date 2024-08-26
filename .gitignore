@@ -35,3 +35,18 @@ wtrmln-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore all dockerfiles
+
+/.dockerignore
+
+Dockerfile
+
+# Ignore fly config file
+
+fly.toml
+/rel/
+
+# ignore .elixir_ls and .vscode config files
+
+/.elixir_ls
+/.vscode

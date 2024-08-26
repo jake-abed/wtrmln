@@ -16,7 +16,6 @@ defmodule Wtrmln.Application do
       # {Wtrmln.Worker, arg},
       # Start to serve requests, typically the last entry
       WtrmlnWeb.Endpoint,
-      FunWithFlags.Supervisor,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
