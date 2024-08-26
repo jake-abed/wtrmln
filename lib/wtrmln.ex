@@ -6,12 +6,12 @@ defmodule Wtrmln do
   Contexts are also responsible for managing your data, regardless
   if it comes from the database, an external API or others.
 """
-  @spec send_message(map()) :: :ok | :error
+  @spec send_message(map()) :: {:ok, any()} | :error
   def send_message(message) do
     with Wtrmln.Room.room_exists?(message.seed),
          room_id <- Wtrmln.Room.get_room_id(message.seed),
-         {:ok, _} <- Wtrmln.Message.add_message(room_id, message) do
-      :ok
+         {:ok, res} <- Wtrmln.Message.add_message(room_id, message) do
+      {:ok, res}
     end
   end
   

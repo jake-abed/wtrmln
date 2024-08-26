@@ -5,16 +5,19 @@ defmodule Wtrmln.Room do
 
   schema "rooms" do
     field :seed, :string
+    field :timeout, :integer
+    field :last_used, :naive_datetime
     has_many :messages, Wtrmln.Message
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :naive_datetime)
   end
 
   @doc false
   def changeset(room, attrs) do
     room
-    |> cast(attrs, [:seed])
-    |> validate_required([:seed])
+    |> IO.inspect()
+    |> cast(attrs, [:seed, :timeout])
+    |> validate_required([:seed, :timeout])
   end
 
   @spec room_exists?(seed :: String.t()) :: boolean()
@@ -29,10 +32,19 @@ defmodule Wtrmln.Room do
     Wtrmln.Repo.one!(query)
   end
 
-  @spec create_room(seed :: String.t())
+  @spec get_room_info(seed :: String.t()) :: {pos_integer(), non_neg_integer()}
+  def get_room_info(seed) do
+    query =
+      from r in Wtrmln.Room,
+      where: r.seed == ^seed,
+      select: {r.id, r.timeout}
+    Wtrmln.Repo.one!(query)
+  end
+
+  @spec create_room(seed :: String.t(), timeout :: non_neg_integer())
     :: {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
-  def create_room(seed) do
-    Wtrmln.Room.changeset(%Wtrmln.Room{}, %{seed: seed})
+  def create_room(seed, timeout \\ 0) do
+    Wtrmln.Room.changeset(%Wtrmln.Room{}, %{seed: seed, timeout: timeout})
     |> Wtrmln.Repo.insert()
   end
 

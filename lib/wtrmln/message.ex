@@ -28,8 +28,9 @@ defmodule Wtrmln.Message do
     |> Wtrmln.Repo.insert()
   end
 
-  @spec get_messages(String.t(), integer()) :: list(message())
+  @spec get_messages(pos_integer(), integer()) :: list(message())
   def get_messages(room_id, limit \\ 100) do
+    IO.inspect(room_id)
     query = from m in Wtrmln.Message,
       where: m.room_id == ^room_id,
       order_by: [desc: m.inserted_at],

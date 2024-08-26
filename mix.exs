@@ -19,7 +19,8 @@ defmodule Wtrmln.MixProject do
   def application do
     [
       mod: {Wtrmln.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      included_applicatoins: [:fun_with_flags],
+      extra_applications: [:crypto, :logger, :runtime_tools]
     ]
   end
 
@@ -47,7 +48,8 @@ defmodule Wtrmln.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:fun_with_flags, "~> 1.11.0", runtime: false},
     ]
   end
 

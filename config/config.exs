@@ -21,6 +21,15 @@ config :wtrmln, WtrmlnWeb.Endpoint,
   ],
   pubsub_server: Wtrmln.PubSub,
   live_view: [signing_salt: "ZuocjYA9"]
+     
+#FunWithFlags Config
+config :fun_with_flags, :persistence,
+  adapter: FunWithFlags.Store.Persistent.Ecto,
+  repo: Wtrmln.Repo,
+  ecto_table_name: "flag_toggles",
+  ecto_primary_key_type: :id
+config :fun_with_flags, :cache, enabled: false
+config :fun_with_flags, :cache_bust_notifications, enabled: false
 
 # Configure esbuild (the version is required)
 config :esbuild,
