@@ -18,6 +18,18 @@
       <label for="seed" class="pb-2 font-noto font-semibold text-2xl text-white text-melon-black">ROOM SEED: </label>
       <input class="font-noto shadow-heavy-inner rounded-xl border-none" type="text" id="seed" name="seed" />
     </div>
+    <%= if FunWithFlags.enabled?(:decay) === true do %>
+      <div class="flex flex-col px-4 flex-wrap justify-between items-center">
+        <label for="seed" class="pb-2 font-noto font-semibold text-2xl text-white text-melon-black">TIMEOUT: </label>
+        <select class="font-noto shadow-heavy-inner rounded-xl border-none" list="timeout-lengths" name="timeout" id="timeout"> 
+          <option value="0">No Timeout</option>
+          <option value="1">1 Minute</option>
+          <option value="5">5 Minutes</option>
+          <option value="10">10 Minutes</option>
+          <option value="60">1 Hour</option>
+        </select>
+      </div>
+    <% end %>
     <input type="hidden" value={get_csrf_token()} name="_csrf_token"/>
     <div class="flex px-4 flex-wrap justify-center items-center">
       <button class="font-noto py-4 px-12 text-white my-2 text-2xl font-bold bg-melon-green shadow-green-clay rounded-2xl" type="submit">JOIN ROOM</button>
@@ -28,6 +40,9 @@
     <ol class="font-noto pl-11 text-white font-semibold text-xl list-decimal">
       <li>Choose your username.</li>
       <li>Set a seed to join or create.</li>
+      <%= if FunWithFlags.enabled?(:decay) === true do %>
+        <li>Set your timeout window.</li>
+      <% end %>
       <li>Join the room.</li>
       <li>Chat!</li>
       <li>Spit the seed to delete it permanently.</li>

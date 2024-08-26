@@ -11,7 +11,7 @@ defmodule Wtrmln.Message do
     field :message, :string
     belongs_to :room, Wtrmln.Room
 
-    timestamps(type: :naive_datetime)
+    timestamps(type: :utc_datetime)
   end
 
   @doc false
@@ -30,6 +30,7 @@ defmodule Wtrmln.Message do
 
   @spec get_messages(pos_integer(), integer()) :: list(message())
   def get_messages(room_id, limit \\ 100) do
+    IO.inspect(room_id)
     query = from m in Wtrmln.Message,
       where: m.room_id == ^room_id,
       order_by: [desc: m.inserted_at],
