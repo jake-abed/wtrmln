@@ -19,7 +19,7 @@ defmodule WtrmlnWeb.RoomLive.Index do
       end
     {room_id, _timeout} = IO.inspect(Wtrmln.Room.get_room_info(seed))
     messages = Wtrmln.Message.get_messages(room_id, 100) |> Enum.reverse()
-    WtrmlnWeb.Endpoint.broadcast(seed, "join", %{username: username})
+    WtrmlnWeb.Endpoint.broadcast(seed, "join", %{username: username, seed: seed})
     {:ok, assign(socket, seed: seed, username: username, messages: messages, message: "")}
   end
 
