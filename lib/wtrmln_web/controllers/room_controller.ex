@@ -20,9 +20,8 @@ defmodule WtrmlnWeb.RoomController do
     username = params["username"]
     timeout = params["timeout"] |> String.to_integer()
     if !Room.room_exists?(seed) do
-      if (timeout > -1) do
-        IO.inspect(GenServer.start_link(Timeout, {seed, timeout}, name: String.to_atom(seed <> "timeout")))
-        IO.puts("I MADE A GENSERVER")
+      if (timeout > 0) do
+        GenServer.start_link(Timeout, {seed, timeout}, name: String.to_atom(seed <> "-timeout"))
       end
       Room.create_room(seed, timeout) |> IO.inspect()
       conn
