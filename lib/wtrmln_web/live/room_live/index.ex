@@ -27,11 +27,18 @@ defmodule WtrmlnWeb.RoomLive.Index do
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end
 
-  def handle_info(%{event: "join", payload: message}, socket) do
+  def handle_info(%{event: "join", payload: %{seed: seed} = message}, socket) do
+    timeout_pid = GenServer.whereis(String.to_atom(seed <> "-timeout"))
+
+    if (!!timeout_pid) do
+      Timeout.join(timeout_pid)
+    end
+
     {:noreply, put_flash(socket, :info, "#{message.username} joined the seed.")}
   end
 
-  def handle_info(%{event: "spit", payload: _message}, socket) do
+  def handle_info(%{event: "spit", payload: %{seed: seed}}, socket) do
+    Wtrmln.spit_seed(seed)
     {:noreply, push_navigate(socket, to: "/")}
   end
 
@@ -43,16 +50,13 @@ defmodule WtrmlnWeb.RoomLive.Index do
   end
 
   def handle_event("send", %{"message" => text, "username" => username, "seed"=> seed}, socket) do
-    {_, timeout} = Wtrmln.Room.get_room_info(seed)
     message = %{message: text, username: username, seed: seed}
 
     {_, %Wtrmln.Message{id: id}} = Wtrmln.send_message(message)
-    pid = GenServer.whereis(String.to_atom(seed <> "timeout"))
+    pid = GenServer.whereis(String.to_atom(seed <> "-timeout"))
 
-    IO.puts("A MESSAGE HAPPENED")
-
-    if (pid) do
-      Timeout.message(pid, timeout)
+    if (!!pid) do
+      Timeout.message(pid)
     end
 
     WtrmlnWeb.Endpoint.broadcast(seed, "message", Map.put(message, :id, id))

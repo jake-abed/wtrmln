@@ -3,16 +3,16 @@ defmodule Wtrmln.Timeout do
 
   # Client
   def start_link({seed, minutes}) do
-    GenServer.start_link(__MODULE__, {seed, minutes})
+    timeout_seed = String.to_atom(seed <> "-timeout")
+    GenServer.start_link(__MODULE__, {seed, minutes}, name: timeout_seed)
   end
 
   # Timeout should always be passed in as a minutes value.
-  def join(pid, timeout) do
+  def join(pid) do
     GenServer.call(pid, :join)
   end
 
-  def message(pid, timeout) do
-    IO.puts("Message received")
+  def message(pid) do
     GenServer.cast(pid, :message)
   end
 
