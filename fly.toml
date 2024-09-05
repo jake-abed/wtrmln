@@ -1,0 +1,28 @@
+app = "wtrmln"
+kill_signal = "SIGTERM"
+primary_region = "sjc"
+
+[deploy]
+release_command = "/app/bin/migrate"
+
+[env]
+PHX_HOST = "wtrmln.chat"
+PORT = "8080"
+
+[http_service]
+auto_start_machines = true
+auto_stop_machines = true
+force_https = true
+internal_port = 8_080
+min_machines_running = 0
+processes = [ "app" ]
+
+  [http_service.concurrency]
+  hard_limit = 1_000
+  soft_limit = 1_000
+  type = "connections"
+
+[[vm]]
+cpu_kind = "shared"
+cpus = 1
+memory_mb = 512

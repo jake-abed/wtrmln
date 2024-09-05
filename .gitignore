@@ -41,9 +41,7 @@ npm-debug.log
 
 Dockerfile
 
-# Ignore fly config file
-
-fly.toml
+#Ignore release file.
 /rel/
 
 # ignore .elixir_ls and .vscode config files
