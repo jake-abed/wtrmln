@@ -9,7 +9,7 @@ defmodule Wtrmln.Timeout do
 
   # Timeout should always be passed in as a minutes value.
   def join(pid) do
-    GenServer.call(pid, :join)
+    GenServer.cast(pid, :join)
   end
 
   def message(pid) do
