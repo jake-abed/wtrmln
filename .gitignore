@@ -35,12 +35,6 @@ wtrmln-*.tar
 npm-debug.log
 /assets/node_modules/
 
-# Ignore all dockerfiles
-
-/.dockerignore
-
-Dockerfile
-
 #Ignore release file.
 /rel/
 
