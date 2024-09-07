@@ -1,4 +1,5 @@
 app = "wtrmln"
+app_name = "wtrmln"
 kill_signal = "SIGTERM"
 primary_region = "sjc"
 
@@ -26,3 +27,4 @@ processes = [ "app" ]
 cpu_kind = "shared"
 cpus = 1
 memory_mb = 512
+
