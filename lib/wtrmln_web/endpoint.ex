@@ -56,7 +56,6 @@ defmodule WtrmlnWeb.Endpoint do
         true -> FunWithFlags.disable(:decay)
       end
     end
-    IO.inspect(FunWithFlags.enabled?(:decay))
     new_conn
   end
 
